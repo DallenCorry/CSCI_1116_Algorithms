@@ -2,7 +2,7 @@ import java.util.Scanner;
 /**
 * This class matches the states with their capitals
 *
-* @athor Unkown
+* @author Unknown
 * Edited by: Dallen Corry
 * @version 1.1
 * @since Feb/01/2022
