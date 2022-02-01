@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Exercise08_37 {
+public class Exercise20_3 {
   public static void main(String[] args) {
     String[][] stateCapital = {
       {"Alabama", "Montgomery"},
