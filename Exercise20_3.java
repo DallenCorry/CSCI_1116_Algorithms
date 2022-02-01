@@ -1,5 +1,12 @@
 import java.util.Scanner;
-
+/**
+* This class matches the states with their capitals
+*
+* @athor Unkown
+* Edited by: Dallen Corry
+* @version 1.1
+* @since Feb/01/2022
+*/
 public class Exercise20_3 {
   public static void main(String[] args) {
     String[][] stateCapital = {
