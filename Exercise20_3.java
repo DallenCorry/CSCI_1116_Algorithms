@@ -4,7 +4,7 @@ import java.util.Scanner;
 *
 * @author Unknown
 * Edited by: Dallen Corry
-* @version 1.2
+* @version 1.2 
 * @since Feb/08/2022
 */
 public class Exercise20_3 {
