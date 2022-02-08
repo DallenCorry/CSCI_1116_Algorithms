@@ -16,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class Exercise20_09 extends Application {
+  
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
     MultipleBallPane ballPane = new MultipleBallPane();
@@ -67,7 +68,8 @@ public class Exercise20_09 extends Application {
     public void add() {
       Color color = new Color(Math.random(), 
         Math.random(), Math.random(), 0.5);
-      getChildren().add(new Ball(30, 30, 20, color)); 
+      double radius = Math.random()*20;
+      getChildren().add(new Ball(30, 30, radius, color)); 
     }
     
     public void subtract() {
@@ -119,7 +121,12 @@ public class Exercise20_09 extends Application {
 
   class Ball extends Circle {
     private double dx = 1, dy = 1;
-
+    /**
+    * @param x Initial x Position of the ball
+    * @param y Initial y Position of the ball
+    * @param radius Initial radius of the ball
+    * @param color the color of the ball
+    */
     Ball(double x, double y, double radius, Color color) {
       super(x, y, radius);
       setFill(color); // Set ball color
@@ -130,7 +137,7 @@ public class Exercise20_09 extends Application {
    * The main method is only needed for the IDE with limited
    * JavaFX support. Not needed for running from the command line.
    */
-  public static void main(String[] args) {
-    launch(args);
-  }
+//  public static void main(String[] args) {
+//    launch(args);
+//  }
 }
