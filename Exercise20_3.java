@@ -4,8 +4,8 @@ import java.util.Scanner;
 *
 * @author Unknown
 * Edited by: Dallen Corry
-* @version 1.1
-* @since Feb/01/2022
+* @version 1.2
+* @since Feb/08/2022
 */
 public class Exercise20_3 {
   public static void main(String[] args) {
