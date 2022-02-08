@@ -87,8 +87,8 @@ public class Exercise20_3 {
       if (capital.toLowerCase().equals(arr[1].toLowerCase())) {
         System.out.println("Your answer is correct");
         correctCount++;
-      }
-      else{        System.out.println("The correct answer should be " + arr[1]);
+      } else {
+        System.out.println("The correct answer should be " + arr[1]);
       }
     }
     System.out.println("Your Score: " + correctCount + "/50");
