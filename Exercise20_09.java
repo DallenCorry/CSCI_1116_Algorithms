@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public class MultipleBounceBall extends Application {
+public class Exercise20_09 extends Application {
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
     MultipleBallPane ballPane = new MultipleBallPane();
