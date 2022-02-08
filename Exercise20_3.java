@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.util.*;
+
 /**
 * This class matches the states with their capitals
 *
@@ -9,6 +10,9 @@ import java.util.Scanner;
 */
 public class Exercise20_3 {
   public static void main(String[] args) {
+    
+    ArrayList<String []> myStateCapital = new ArrayList<String []>();
+    
     String[][] stateCapital = {
       {"Alabama", "Montgomery"},
       {"Alaska", "Juneau"},
@@ -61,24 +65,35 @@ public class Exercise20_3 {
       {"Wisconsin", "Madison"},
       {"Wyoming", "Cheyenne"}
     };
-
-    Scanner input = new Scanner(System.in);
     
+    for(String[] arr:stateCapital){
+      if(arr.length == 2){
+        myStateCapital.add(arr);
+      } else {
+        System.out.println("Missing State/Capital");
+      }
+    }
+    
+    Random r = new Random();
+    Collections.shuffle(myStateCapital,r);
+    Scanner input = new Scanner(System.in);
     int correctCount = 0;
-
-    for (int i = 0; i < stateCapital.length; i++) {
-      // Prompt the user with a question
-      System.out.print("What is the capital of " + stateCapital[i][0] + "? ");
-      String capital = input.nextLine().trim().toLowerCase();
       
-      if (capital.toLowerCase().equals(stateCapital[i][1].toLowerCase())) {
+    for(String[] arr:myStateCapital){
+      // Prompt the user with a question
+      System.out.print("What is the capital of " + arr[0]+ "? ");
+      String capital = input.nextLine().trim().toLowerCase();
+    
+      if (capital.toLowerCase().equals(arr[1].toLowerCase())) {
         System.out.println("Your answer is correct");
         correctCount++;
       }
-      else
-        System.out.println("The correct answer should be " + stateCapital[i][1]);
+      else{        System.out.println("The correct answer should be " + arr[1]);
+      }
     }
-
-    System.out.println("The correct count is " + correctCount);
+    System.out.println("Your Score: " + correctCount + "/50");
+    double percent = (double)correctCount/stateCapital.length;
+    System.out.printf("%.1f%% correct",(percent*100));
   }
 }
+  
