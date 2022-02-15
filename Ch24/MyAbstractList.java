@@ -39,40 +39,48 @@ public abstract class MyAbstractList<E> implements MyList<E> {
 	}
 	
 	/** Adds the elements in otherList to this list.
+	 * similar to the Union function of a set.
 	* @return true if this list changed as a result of the call */ 
 	public boolean addAll(MyList<E> otherList) {
-		int startSize = size();
+		boolean modified = false;
 		for( int i = 0; i<otherList.size(); i++) {
 			if(!contains(otherList.get(i))) {
 				add(otherList.get(i));
+				modified = true;
 			}
 		}
-		if (size()!=startSize) {
-			return true;
-		} else {
-			return false;
-		}
+		return modified;
 	}
 	
 	/** Removes all the elements in otherList from this list
+	 * similar to a Difference function of a set.
 	* @return true if this list changed as a result of the call */ 
 	public boolean removeAll(MyList<E> otherList) {
-		int startSize = size();
-		for( int i = 0; i<otherList.size(); i++) {
+		boolean modified = false;
+		for( int i = 0; i<otherList.size();) {
 			if(contains(otherList.get(i))) {
 				remove(otherList.get(i));
+				modified = true;
+			} else {
+				i++;
 			}
 		}
-		if (size()!=startSize) {
-			return true;
-		} else {
-			return false;
-		}
+		return modified;
 	}
 	
-	/** Retains the elements in this list that are also in otherList 
+	/** Retains the elements in this list that are also in otherList.
+	 * Similar to the Intersect function of a set.
 	* @return true if this list changed as a result of the call */ 
 	public boolean retainAll(MyList<E> otherList) {
-		return false;
+		boolean modified = false;
+		for (int i=0; i<size();) {
+			if(!otherList.contains(get(i))){
+				this.remove(get(i));
+				modified = true;
+			} else {
+				i++;
+			}
+		}
+		return modified;
 	}
 }
