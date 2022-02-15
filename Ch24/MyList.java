@@ -41,4 +41,10 @@ public interface MyList<E> extends java.lang.Iterable {
 
 	/** Return the number of elements in this list */
 	public int size();
+
+	public boolean addAll(MyList<String> list2);
+
+	public boolean removeAll(MyList<String> list2);
+
+	public boolean retainAll(MyList<String> list2);
 }
