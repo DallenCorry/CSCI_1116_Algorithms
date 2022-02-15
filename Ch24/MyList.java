@@ -42,9 +42,15 @@ public interface MyList<E> extends java.lang.Iterable {
 	/** Return the number of elements in this list */
 	public int size();
 
-	public boolean addAll(MyList<String> list2);
+	/** Adds the elements in otherList to this list.
+	* @return true if this list changed as a result of the call */ 
+	public boolean addAll(MyList<E> otherList); 
 
-	public boolean removeAll(MyList<String> list2);
+	/** Removes all the elements in otherList from this list
+	* @return true if this list changed as a result of the call */ 
+	public boolean removeAll(MyList<E> otherList); 
 
-	public boolean retainAll(MyList<String> list2);
+	/** Retains the elements in this list that are also in otherList 
+	* @return true if this list changed as a result of the call */ 
+	public boolean retainAll(MyList<E> otherList); 
 }
