@@ -1,4 +1,4 @@
-package f;
+package ballBounce;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -78,46 +78,19 @@ public class Exercise20_09 extends Application {
     }
     
     public void subtract() {
-      if (getChildren().size() > 0) {
-    	  System.out.println("printing...");
-    	  ObservableList<Node> ls = mySort(getChildren(),new myComparator());
-//    	  System.out.println(ls);
-//    	  System.out.println(getChildren());
-//    	  System.out.println(ls);
-//    	  getChildren().clear();
-//    	  System.out.println(getChildren());
-//    	  ls.remove(0);
-//    	  getChildren().addAll(ls);
-//        getChildren().sorted(new myComparator()<Ball>);          
-
-//        getChildren().remove(0);//getChildren().size() - 1); 
+      if (getChildren().size() > 0) { 
+    	  double biggestSize = 0;
+    	  int biggestIndex = 0;
+    	  for (int i=0; i<getChildren().size(); i++) {
+    		  double ballRadius = ((Ball)(getChildren().get(i))).getRadius();
+    		  if (ballRadius > biggestSize) {
+    			  biggestSize = ballRadius;
+    			  biggestIndex = i;
+    		  }
+    	  }
+        getChildren().remove(biggestIndex);//getChildren().size() - 1); 
       }
     }
-
-    private ObservableList<Node> mySort(ObservableList<Node> children, myComparator myComparator) {
-    	ObservableList<Node> newList = FXCollections.observableArrayList();
-       	for (int i=0; i<children.size(); i++) {
-    		double rad = Math.round(((Ball)(children.get(i))).getRadius()*1000)/1000;
-    		
-    		for (int j=1; j<children.size()-1; j++) {
-    			double rad2 = Math.round(((Ball)(children.get(j))).getRadius()*1000)/1000;
-    			System.out.println(rad+"  "+rad2);
-    			if (rad < rad2) {
-    				System.out.println(rad+"is Smaller than "+rad2);
-    				newList.add(i,children.get(i));
-        			break;
-    			} else if (rad == rad2){
-    				break;
-    			}else {
-    				newList.add(children.get(i));
-    			}
-    		}
-    		System.out.println(newList);
-    	}
-    	
-//    	System.out.println("the thing"+newList);
-    	return newList;
-	}
 
 	public void play() {
       animation.play();
@@ -160,7 +133,7 @@ public class Exercise20_09 extends Application {
     }
   }
 
-  class Ball extends Circle implements Comparable<Ball>{
+  class Ball extends Circle {
 	  public double rad;
     private double dx = 1, dy = 1;
     /**
@@ -174,17 +147,6 @@ public class Exercise20_09 extends Application {
       setFill(color); // Set ball color
       rad = radius;
     }
-	@Override
-	public int compareTo(Ball ob1) {
-		if(getRadius()>ob1.getRadius()) {
-			return 1;
-		}
-		if(getRadius()==ob1.getRadius()) {
-			return 0;
-		} else {
-			return -1;
-		}
-	}
   }
   
   class myComparator implements Comparator<Ball>{
@@ -209,8 +171,3 @@ public class Exercise20_09 extends Application {
     launch(args);
   }
 }
-
-
-
-
-
