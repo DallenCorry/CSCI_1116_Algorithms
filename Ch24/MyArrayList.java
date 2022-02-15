@@ -147,4 +147,5 @@ public class MyArrayList<E> extends MyAbstractList<E> {
 	public int size() {
 		return size;
 	}
+
 }
