@@ -14,6 +14,6 @@ public class WordOccurrence implements Comparable<WordOccurrence> {
 	
 	@Override
 	public String toString() {
-		return word + count;
+		return word +"\t"+ count;
 	}
 }
