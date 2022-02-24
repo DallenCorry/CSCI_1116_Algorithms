@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Exercise21_07 {
 	public static void main(String[] args) {
-		List<WordOccurrence> sortedWordOccurrences = new ArrayList<WordOccurrence>();
 		
 		// Set text in a string
 		String text = "Good morning. Have a good class. " +
@@ -27,12 +26,13 @@ public class Exercise21_07 {
 			}
 		}
 		
-		// Display key and value for each entry
-		map.forEach((k,v) -> sortedWordOccurrences.add(new WordOccurrence(k,v)));
+		// Store key and value for each entry and sort
+		List<WordOccurrence> sortedWordOccurrences = new ArrayList<WordOccurrence>();
 		
-		Collections.sort(sortedWordOccurrences, Collections.reverseOrder());
-		System.out.println(sortedWordOccurrences);
-//		Collections.sort(sortedMapObjects);
-		sortedWordOccurrences.forEach(e -> System.out.println(e));//(k, v) -> System.out.println(k + "\t" + v));
+		map.forEach((k,v) -> sortedWordOccurrences.add(new WordOccurrence(k,v)));
+		Collections.sort(sortedWordOccurrences);
+		
+		// Display each entry of sorted ArrayList using toString in WordOccurrence
+		sortedWordOccurrences.forEach(e -> System.out.println(e));
 	}
 }
