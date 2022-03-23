@@ -1,3 +1,6 @@
+/**
+*  Author: Dallen Corry
+*/
 import java.util.Scanner;
 
 public class Exercise22_1 {
@@ -37,10 +40,4 @@ public class Exercise22_1 {
 		}
 		return s.substring(startIndex,endIndex+1);//+1 because it is exclusive
 	}
-
 }
-
-
-
-
-
