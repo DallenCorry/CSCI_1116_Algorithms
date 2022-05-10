@@ -49,10 +49,9 @@ public class Exercise33_09Server extends Application {
     primaryStage.setScene(scene); // Place the scene in the stage
     primaryStage.show(); // Display the stage
 
-    //Access data from the client.
+
     new Thread(() -> {
 	    try {
-	    	//create the server
 			serverSocket = new ServerSocket(port);
 			Platform.runLater(() -> taServer.appendText("Server Started"));
 			clientSocket = serverSocket.accept();
@@ -60,27 +59,22 @@ public class Exercise33_09Server extends Application {
 			
 			DataInputStream in = new DataInputStream(clientSocket.getInputStream());
 			DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
-			System.out.println("created IO");
 			
-			//send the data
 		    taClient.setOnKeyReleased(e -> {
 		    	if (e.getCode().equals(KeyCode.ENTER)) {
 					try {
-						out.writeChars("S: "+taClient.getText());
+						out.writeUTF("S: "+taClient.getText());
 						out.flush();
 						taServer.appendText("S: "+taClient.getText());
 						taClient.clear();
-		    		} catch(IOException e1) {
+		    		} catch (IOException e1) {
 		    			e1.printStackTrace();
 		    		}
 		    	}
 		    });
 	    	
-		   
 		    while(true) {
 		    	String txt = in.readUTF();
-		    	//txt += "\n";
-		    	out.writeChars(txt);
 		    	
 		    	Platform.runLater(() -> {
 		    		taServer.appendText(txt);
