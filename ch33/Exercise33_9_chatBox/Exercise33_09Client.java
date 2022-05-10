@@ -18,8 +18,8 @@ public class Exercise33_09Client extends Application {
   private TextArea taClient = new TextArea();
   private Socket clientSocket;
   private int port = 5000;
-  DataInputStream in = null;
-  DataOutputStream out = null;
+//  DataInputStream in = null;
+//  DataOutputStream out = null;
  
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
@@ -51,37 +51,38 @@ public class Exercise33_09Client extends Application {
     primaryStage.show(); // Display the stage
     
 
-
     new Thread(() -> {
 	    try {
+	    	clientSocket = new Socket("localhost", port);
+	    	Platform.runLater(() -> taServer.appendText("Client Started"));
+	    	
+	    	
+	    	
+	    	DataInputStream in = new DataInputStream(clientSocket.getInputStream());
+			DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
+	    	
 		    taClient.setOnKeyReleased(e -> {
 		    	if (e.getCode().equals(KeyCode.ENTER)) {
-		    		//send to the server
 		    		try {
-		    			String temp = "C: "+taClient.getText();
-						out.writeChars(temp);
+						out.writeUTF("C: "+taClient.getText());
 						out.flush();
 						taServer.appendText("C: "+taClient.getText());
 			    		taClient.clear();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-			    	
 		    	}
 		    });
+	    			   
+	    	while(true) {
+		    	String txt = in.readUTF();
+		    	
+		    	Platform.runLater(() -> {
+		    		taServer.appendText(txt);
+		    	});
+	    	}
 	    	
-	    	clientSocket = new Socket("localhost", port);
-	    	in = new DataInputStream(clientSocket.getInputStream());
-	    	out = new DataOutputStream(clientSocket.getOutputStream());
-		   
-		  while(true) {
-			    String txt = in.readUTF();
-
-		    	Platform.runLater(() ->
-		    			taServer.appendText(txt));
-		    }
-	    	
-	    } catch(IOException e) {
+	    } catch (IOException e) {
 	    	e.printStackTrace();
 	    }
   	}).start();
