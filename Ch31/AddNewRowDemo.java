@@ -75,9 +75,13 @@ public class AddNewRowDemo extends Application {
     
     
     btRemoveRow.setOnAction(e -> {
-    	Country selectedCountry = tableView.getSelectionModel().getSelectedItem();
-    	System.out.println(selectedCountry.getCountry());
-    	data.remove(0);
+    	try {
+	    	int num = tableView.getSelectionModel().getSelectedIndex();
+	    	data.remove(num); 
+    	} catch(IndexOutOfBoundsException E) {
+    		System.out.println("Select a row ");
+    	}
+    	
     });
     flowPane.setPadding(new Insets(5,5,5,5));
     BorderPane pane = new BorderPane();
